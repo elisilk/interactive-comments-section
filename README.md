@@ -148,7 +148,7 @@ Specific areas that the solution should be improved (known issues):
 
 Specific enhancements I'd like to make (feature requests):
 
-- [ ] ...
+Hmm 🤔 ...
 
 More general ideas I want to consider:
 
