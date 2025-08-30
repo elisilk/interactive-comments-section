@@ -1,0 +1,127 @@
+@import '@/assets/styles/base.css';
+
+/* semantic properties */
+:root {
+  /* colors */
+
+  /* colors -- backgrounds */
+  --color-background-body: hsl(var(--color-grey-50));
+  --color-background-comment: hsl(var(--color-white));
+
+  --score-background-color: hsl(var(--color-grey-50));
+  --tag-background-color: hsl(var(--color-purple-600));
+  --replies-border-color: hsl(var(--color-grey-100));
+  --dialog-backdrop-color: hsl(var(--color-black) / 50%);
+
+  --input-border-color: hsl(var(--color-grey-100));
+  --input-border-color-active: hsl(var(--color-purple-600));
+
+  /* colors -- text */
+  --color-text-primary: hsl(var(--color-grey-500));
+  --color-text-accent: hsl(var(--color-purple-600));
+  --color-text-score: hsl(var(--color-purple-600));
+  --color-text-tag: hsl(var(--color-white));
+  --color-text-input: hsl(var(--color-grey-800));
+
+  --btn-clr-primary-txt: hsl(var(--color-white));
+  --btn-clr-primary-txt-active: hsl(var(--color-white));
+
+  --btn-clr-primary-bkg: hsl(var(--color-purple-600));
+  --btn-clr-primary-bkg-active: hsl(var(--color-purple-200));
+
+  --btn-clr-secondary-bkg: hsl(var(--color-grey-500));
+  --btn-clr-secondary-bkg-active: hsl(var(--color-grey-500) / 50%);
+
+  --btn-clr-warning-bkg: hsl(var(--color-pink-400));
+  --btn-clr-warning-bkg-active: hsl(var(--color-pink-200));
+
+  /* sizing/spacing */
+
+  /* main */
+  --main-inline-size-max: 45.625rem; /* 730px */
+  --main-inline-size-gutter: var(--space-200); /* (m) 16px -> (t) 42px */
+  --main-block-size-margin: var(--space-400); /* (m) 32px -> (t) 58px */
+
+  /* dialog */
+  --dialog-inline-size-max: 25rem; /* 400px */
+  --dialog-inline-size-gutter: var(--space-200); /* 16px */
+
+  /* comments */
+  --comment-block-size-gap: var(--space-200); /* (m) 16px -> (t) 24px */
+  --comment-box-padding: var(--space-200); /* (m) 16px -> (t) 24px */
+
+  /* replies */
+  --replies-border-width: 0.125rem; /* 2px */
+  --replies-padding-inline: var(--space-200); /* (m) 16px -> (t) 40px */
+  --replies-margin-inline: 0; /* (m) 0px -> (t) 46px */
+
+  /* buttons */
+  --button-base-block-size: var(--space-600); /* 48px */
+  --button-base-inline-size: var(--space-1300); /* 104px */
+  --score-button-padding: var(--space-125); /* 10px */
+  --score-controls-gap: calc(var(--space-200) - var(--score-button-padding)); /* 16px */
+}
+
+/* viewport: mobile -> tablet */
+@media (min-width: 40rem) {
+  :root {
+    --main-inline-size-gutter: var(--space-525); /* (m) 16px -> (t) 42px */
+    --main-block-size-margin: var(--space-725); /* (m) 32px -> (t) 58px */
+
+    --comment-block-size-gap: var(--space-300); /* (m) 16px -> (t) 24px */
+    --comment-box-padding: var(--space-300); /* (m) 16px -> (t) 24px */
+
+    --replies-padding-inline: var(--space-500); /* (m) 16px -> (t) 40px */
+    --replies-margin-inline: var(--space-575); /* (m) 0px -> (t) 46px */
+  }
+}
+
+/* viewport: tablet -> desktop */
+/* @media (min-width: 60rem) {
+  :root {
+  }
+} */
+
+/* -------------------- */
+/* Typography           */
+/* -------------------- */
+
+.text-preset1 {
+  font-size: var(--fs-600);
+  line-height: var(--lh-300);
+  font-weight: var(--fw-medium);
+}
+
+.text-preset2-medium {
+  font-size: var(--fs-400);
+  line-height: var(--lh-400);
+  font-weight: var(--fw-medium);
+}
+
+.text-preset2-regular {
+  font-size: var(--fs-400);
+  line-height: var(--lh-400);
+  font-weight: var(--fw-regular);
+}
+
+.text-preset3 {
+  font-size: var(--fs-300);
+  line-height: var(--lh-300);
+  font-weight: var(--fw-medium);
+}
+
+/* -------------------- */
+/* Body / App           */
+/* -------------------- */
+
+body {
+  color: var(--color-text-primary);
+  background-color: var(--color-background-body);
+
+  font-family: var(--ff-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-400);
+
+  margin: 0;
+  padding: 0;
+}
