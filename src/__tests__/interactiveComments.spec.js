@@ -32,9 +32,9 @@ describe('Interactive Comments Store', () => {
     interactiveCommentsStore.currentUser = sampleData.currentUser
     // Convert relative timestamp to an absolute one
     sampleData.comments.forEach((comment) =>
-      nestedForEach(comment, 'replies', (comment) => {
-        comment.createdAtTimestamp = toAbsoluteTimestamp(comment.createdAt)
-        delete comment.createdAt
+      nestedForEach(comment, 'replies', (nestedComment) => {
+        nestedComment.createdAtTimestamp = toAbsoluteTimestamp(nestedComment.createdAt)
+        delete nestedComment.createdAt
       }),
     )
     // Save the sample comments
