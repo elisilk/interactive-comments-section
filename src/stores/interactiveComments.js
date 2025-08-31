@@ -22,7 +22,7 @@ export const useInteractiveCommentsStore = defineStore('interactiveComments', ()
   // CREATE
   function createComment(content) {
     comments.value.push({
-      id: this.nextId,
+      id: nextId.value,
       content,
       createdAtTimestamp: Date.now(),
       score: 0,
@@ -32,7 +32,7 @@ export const useInteractiveCommentsStore = defineStore('interactiveComments', ()
   }
 
   function createReply(content, replyingToCommentId) {
-    const { item: foundReplyToComment } = this.findComment(replyingToCommentId)
+    const { item: foundReplyToComment } = findComment.value(replyingToCommentId)
 
     // if existing comment to reply to not found, then error
     if (!foundReplyToComment) {
@@ -45,7 +45,7 @@ export const useInteractiveCommentsStore = defineStore('interactiveComments', ()
 
     // add the new comment to the replies of the existing comment
     foundReplyToComment.replies.push({
-      id: this.nextId,
+      id: nextId.value,
       content,
       createdAtTimestamp: Date.now(),
       score: 0,
@@ -58,7 +58,7 @@ export const useInteractiveCommentsStore = defineStore('interactiveComments', ()
   // UPDATE
   function updateContent(commentId, newContent) {
     // Find the comment
-    const { item: foundComment } = this.findComment(commentId)
+    const { item: foundComment } = findComment.value(commentId)
     foundComment.content = newContent
   }
 
@@ -66,7 +66,7 @@ export const useInteractiveCommentsStore = defineStore('interactiveComments', ()
     // console.log('Store updating comment score:', commentId, direction)
 
     // Find the comment
-    const { item: foundComment } = this.findComment(commentId)
+    const { item: foundComment } = findComment.value(commentId)
 
     if (direction === 'positive') foundComment.score++
     else if (direction === 'negative' && foundComment.score > 0) foundComment.score--
@@ -78,7 +78,7 @@ export const useInteractiveCommentsStore = defineStore('interactiveComments', ()
     // console.log('Store deleting comment:', commentId)
 
     // Find the comment
-    const { index: foundCommentIndex, array: foundCommentArray } = this.findComment(commentId)
+    const { index: foundCommentIndex, array: foundCommentArray } = findComment.value(commentId)
 
     // Comment not found, so do nothing
     if (foundCommentIndex === -1) return
