@@ -105,6 +105,9 @@ onUnmounted(() => {
           :id="'form-edit-comment-' + comment.id"
           @submit.prevent="handleCommentEditSubmit"
         >
+          <label :for="'textarea-edit-comment-' + comment.id" class="sr-only"
+            >Update your comment</label
+          >
           <textarea
             class="edit__input"
             :name="'textarea-edit-comment-' + comment.id"
