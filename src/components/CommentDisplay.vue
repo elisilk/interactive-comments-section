@@ -84,6 +84,7 @@ function updateRelativeTime() {
 
 // Start interval only if page is visible
 function startInterval() {
+  if (intervalId) return // Prevent multiple intervals
   updateRelativeTime() // update immediately
   // Update every 60 seconds (60000 ms)
   intervalId = setInterval(updateRelativeTime, 60000)
@@ -91,7 +92,9 @@ function startInterval() {
 
 // Clear the interval to stop updates
 function stopInterval() {
+  if (!intervalId) return // No interval to clear
   clearInterval(intervalId)
+  intervalId = null // Reset to allow future intervals
 }
 
 // Handle visibility changes
