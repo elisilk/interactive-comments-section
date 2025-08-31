@@ -166,6 +166,8 @@ Specific areas that the solution should be improved (known issues):
 - [ ] Consider using container queries to make layout adjustments rather than media queries
 - [ ] Think more about whether there should be a limit to how nested the replies can be. Or at least how nested the formatting can get, especially in narrower viewport widths.
 - [ ] Think about combining the editing of an existing comment with the new comment into a common component (or components)
+- [ ] Consider removing the '@username' from the editable textarea for comment replies and updates so that aspect is less prone to user editing and error
+- [ ] Consider converting the comment list to an actual `ul` element to semantically represent the list
 
 Specific enhancements I'd like to make (feature requests):
 
