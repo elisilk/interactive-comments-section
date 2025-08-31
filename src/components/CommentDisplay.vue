@@ -96,10 +96,8 @@ function stopInterval() {
 // Handle visibility changes
 function handleVisibilityChange() {
   if (document.visibilityState === 'visible') {
-    console.log('visible so starting the interval')
     startInterval()
   } else {
-    console.log('not visible so stopping the interval')
     stopInterval()
   }
 }
