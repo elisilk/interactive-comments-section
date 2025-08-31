@@ -57,16 +57,23 @@ export const useInteractiveCommentsStore = defineStore('interactiveComments', ()
 
   // UPDATE
   function updateContent(commentId, newContent) {
-    // Find the comment
     const { item: foundComment } = findComment.value(commentId)
+
+    if (!foundComment) {
+      console.warn(`Comment with ID ${commentId} not found.`)
+      return
+    }
+
     foundComment.content = newContent
   }
 
   function updateScore(commentId, direction) {
-    // console.log('Store updating comment score:', commentId, direction)
-
-    // Find the comment
     const { item: foundComment } = findComment.value(commentId)
+
+    if (!foundComment) {
+      console.warn(`Comment with ID ${commentId} not found.`)
+      return
+    }
 
     if (direction === 'positive') foundComment.score++
     else if (direction === 'negative' && foundComment.score > 0) foundComment.score--
@@ -75,13 +82,12 @@ export const useInteractiveCommentsStore = defineStore('interactiveComments', ()
   // DELETE
   // function delete(id)
   function deleteComment(commentId) {
-    // console.log('Store deleting comment:', commentId)
-
-    // Find the comment
     const { index: foundCommentIndex, array: foundCommentArray } = findComment.value(commentId)
 
-    // Comment not found, so do nothing
-    if (foundCommentIndex === -1) return
+    if (foundCommentIndex === -1 || !foundCommentArray) {
+      console.warn(`Comment with ID ${commentId} not found.`)
+      return
+    }
 
     // Comment found, so splice it from the array
     foundCommentArray.splice(foundCommentIndex, 1)
