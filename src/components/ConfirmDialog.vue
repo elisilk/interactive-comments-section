@@ -6,16 +6,47 @@ import { useConfirmDialog } from '@/composables/useConfirmDialog'
 const { dialogState, confirm, cancel } = useConfirmDialog()
 const dialogElement = ref(null)
 
+const focusableSelectors =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+let lastFocusedElement
+
 watch(
   () => dialogState.value.isVisible,
   (isVisible) => {
     if (isVisible) {
+      lastFocusedElement = document.activeElement // Save focus to restore later
       dialogElement.value.showModal()
+      dialogElement.value.addEventListener('keydown', trapFocus)
     } else {
       dialogElement.value.close()
+      dialogElement.value.removeEventListener('keydown', trapFocus)
+      lastFocusedElement.focus() // Restore focus to last element
     }
   },
 )
+
+function trapFocus(e) {
+  if (!dialogElement.value) return
+  if (e.key !== 'Tab') return
+
+  const focusableElements = Array.from(dialogElement.value.querySelectorAll(focusableSelectors))
+  const first = focusableElements[0]
+  const last = focusableElements[focusableElements.length - 1]
+
+  if (e.shiftKey) {
+    // Shift + Tab
+    if (document.activeElement === first) {
+      e.preventDefault()
+      last.focus()
+    }
+  } else {
+    // Tab
+    if (document.activeElement === last) {
+      e.preventDefault()
+      first.focus()
+    }
+  }
+}
 
 function handleConfirm() {
   confirm()
@@ -38,20 +69,42 @@ function handleClick(event) {
 
 <template>
   <Teleport to="body">
-    <dialog ref="dialogElement" class="comment__dialog" @click="handleClick" @close="handleClose">
-      <div class="dialog__inner">
-        <h2 class="dialog__heading">{{ dialogState.heading }}</h2>
-        <p class="dialog__message">{{ dialogState.message }}</p>
+    <dialog
+      ref="dialogElement"
+      class="comment__dialog"
+      aria-modal="true"
+      role="alertdialog"
+      aria-labelledby="dialog-heading"
+      aria-describedby="dialog-message"
+      @click="handleClick"
+      @close="handleClose"
+    >
+      <form class="dialog__inner" method="dialog">
+        <h2 class="dialog__heading" id="dialog-heading">{{ dialogState.heading }}</h2>
+        <p class="dialog__message" id="dialog-message">{{ dialogState.message }}</p>
 
-        <div class="dialog__controls">
-          <ButtonBase class="button--full button--secondary" @click="handleCancel">{{
-            dialogState.cancelLabel
-          }}</ButtonBase>
-          <ButtonBase class="button--full button--warning" @click="handleConfirm">{{
-            dialogState.confirmLabel
-          }}</ButtonBase>
-        </div>
-      </div>
+        <menu class="dialog__controls">
+          <li>
+            <ButtonBase
+              type="submit"
+              value="cancel"
+              class="button--full button--secondary"
+              @click="handleCancel"
+              autofocus
+              >{{ dialogState.cancelLabel }}</ButtonBase
+            >
+          </li>
+          <li>
+            <ButtonBase
+              type="submit"
+              value="confirm"
+              class="button--full button--warning"
+              @click="handleConfirm"
+              >{{ dialogState.confirmLabel }}</ButtonBase
+            >
+          </li>
+        </menu>
+      </form>
     </dialog>
   </Teleport>
 </template>
@@ -75,7 +128,11 @@ function handleClick(event) {
 }
 
 .dialog__controls {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-200);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 </style>
