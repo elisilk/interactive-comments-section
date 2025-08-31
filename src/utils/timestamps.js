@@ -8,7 +8,10 @@ export function toAbsoluteTimestamp(relativeTimestamp) {
   if (unit === 'month' || unit === 'months') unitInMs = 30 * 24 * 60 * 60 * 1000
   else if (unit === 'week' || unit === 'weeks') unitInMs = 7 * 24 * 60 * 60 * 1000
   else if (unit === 'day' || unit === 'days') unitInMs = 1 * 24 * 60 * 60 * 1000
-  else console.error('unknown unit:', unit)
+  else {
+    console.error('unknown unit:', unit)
+    return null // Stop and return a safe fallback
+  }
 
   const timestampInPast = now - Number(quantity) * unitInMs
   return timestampInPast
