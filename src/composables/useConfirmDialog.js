@@ -18,7 +18,10 @@ export function useConfirmDialog() {
       dialogState.value.confirmLabel = confirmLabel
       dialogState.value.cancelLabel = cancelLabel
       dialogState.value.isVisible = true
-      dialogState.value.resolve = resolve
+      dialogState.value.resolve = (value) => {
+        resolve(value) // Resolve the promise
+        dialogState.value.resolve = null // Clear stored resolve to prevent reuse
+      }
     })
   }
 
