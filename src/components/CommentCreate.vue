@@ -63,6 +63,7 @@ function handleCommentSubmit() {
         format="image-only"
       />
 
+      <label for="textarea-new-comment" class="sr-only">Add a comment</label>
       <textarea
         class="edit__input"
         name="textarea-new-comment"
