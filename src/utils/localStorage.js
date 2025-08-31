@@ -25,8 +25,10 @@ export function storageAvailable(type) {
   } catch (e) {
     return (
       e instanceof DOMException &&
-      e.name === 'QuotaExceededError' &&
-      // acknowledge QuotaExceededError only if there's something already stored
+      (e.name === 'QuotaExceededError' || // Chrome, Edge
+        e.name === 'NS_ERROR_DOM_QUOTA_REACHED' || // Firefox
+        e.name === 'SecurityError') && // Safari private mode
+      // Only true if storage is not empty, meaning quota is actually exceeded
       storage &&
       storage.length !== 0
     )
