@@ -78,14 +78,44 @@ const relativeTimeString = ref(toRelativeTime(props.comment.createdAtTimestamp))
 
 let intervalId
 
+function updateRelativeTime() {
+  relativeTimeString.value = toRelativeTime(props.comment.createdAtTimestamp)
+}
+
+// Start interval only if page is visible
+function startInterval() {
+  updateRelativeTime() // update immediately
+  intervalId = setInterval(updateRelativeTime, 1000)
+}
+
+// Clear the interval to stop updates
+function stopInterval() {
+  clearInterval(intervalId)
+}
+
+// Handle visibility changes
+function handleVisibilityChange() {
+  if (document.visibilityState === 'visible') {
+    console.log('visible so starting the interval')
+    startInterval()
+  } else {
+    console.log('not visible so stopping the interval')
+    stopInterval()
+  }
+}
+
 onMounted(() => {
-  intervalId = setInterval(() => {
-    relativeTimeString.value = toRelativeTime(props.comment.createdAtTimestamp)
-  }, 1000)
+  document.addEventListener('visibilitychange', handleVisibilityChange)
+
+  // Initialize based on current visibility
+  if (document.visibilityState === 'visible') {
+    startInterval()
+  }
 })
 
 onUnmounted(() => {
-  clearInterval(intervalId)
+  stopInterval()
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
 })
 </script>
 
