@@ -169,7 +169,9 @@ Specific areas that the solution should be improved (known issues):
 
 Specific enhancements I'd like to make (feature requests):
 
-Hmm 🤔 ...
+- [ ] Update the relative timestamp dynamically based on the relative unit. For example, a comment posted just minutes ago could be updated every minute, but a comment posted days or weeks ago probably doesn't need to be updated except on page load.
+  - Calculate a delay that is different for different timescales (e.g., seconds delay = 1000, minutes delay = 60 _ 1000, hours delay = 60 _ 60 \* 1000)
+  - Use a [setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/Window/setTimeout) (instead of [setInterval](https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval)) and then only create a new setTimeout when the previous one has been executed.
 
 More general ideas I want to consider:
 
