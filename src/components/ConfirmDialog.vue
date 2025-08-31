@@ -83,27 +83,23 @@ function handleClick(event) {
         <h2 class="dialog__heading" id="dialog-heading">{{ dialogState.heading }}</h2>
         <p class="dialog__message" id="dialog-message">{{ dialogState.message }}</p>
 
-        <menu class="dialog__controls">
-          <li>
-            <ButtonBase
-              type="submit"
-              value="cancel"
-              class="button--full button--secondary"
-              @click="handleCancel"
-              autofocus
-              >{{ dialogState.cancelLabel }}</ButtonBase
-            >
-          </li>
-          <li>
-            <ButtonBase
-              type="submit"
-              value="confirm"
-              class="button--full button--warning"
-              @click="handleConfirm"
-              >{{ dialogState.confirmLabel }}</ButtonBase
-            >
-          </li>
-        </menu>
+        <div class="dialog__controls">
+          <ButtonBase
+            type="submit"
+            value="cancel"
+            class="button--full button--secondary"
+            @click="handleCancel"
+            autofocus
+            >{{ dialogState.cancelLabel }}</ButtonBase
+          >
+          <ButtonBase
+            type="submit"
+            value="confirm"
+            class="button--full button--warning"
+            @click="handleConfirm"
+            >{{ dialogState.confirmLabel }}</ButtonBase
+          >
+        </div>
       </form>
     </dialog>
   </Teleport>
