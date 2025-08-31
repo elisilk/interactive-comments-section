@@ -30,7 +30,7 @@ const emit = defineEmits(['processed'])
 
 const vFocus = {
   mounted: (el, binding) => {
-    if (binding.arg) el.focus()
+    if (binding.value) el.focus()
   },
 }
 
@@ -70,7 +70,7 @@ function handleCommentSubmit() {
         id="textarea-new-comment"
         placeholder="Add a comment…"
         v-model="commentText"
-        v-focus:[isReply]
+        v-focus="isReply"
       ></textarea>
 
       <div class="edit__controls">
