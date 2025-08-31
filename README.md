@@ -71,6 +71,16 @@ As always, so many cool :sunglasses: things. Here are some of the key resources 
 
 #### Testing the App
 
+- [Testing Vue components the right way](https://mayashavin.com/articles/testing-components-with-vitest)
+- Vue Test Utils and HTML Dialog Element
+  - [showModal is not a function in test react testing library](https://stackoverflow.com/questions/78566864/showmodal-is-not-a-function-in-test-react-testing-library)
+  - [jsdom > Issues > Implement HTMLDialogElement #3294](https://github.com/jsdom/jsdom/issues/3294)
+- Async and Mocking
+  - [Vitest > Mocking](https://vitest.dev/guide/mocking)
+  - [Vitest > Vi](https://vitest.dev/api/vi)
+  - [Vue Test Utils > Asynchronous Behavior](https://test-utils.vuejs.org/guide/advanced/async-suspense)
+  - [Vue Test Utils > Reusability & Composition](https://test-utils.vuejs.org/guide/advanced/reusability-composition)
+  - [Vue Test Utils > Testing Teleport](https://test-utils.vuejs.org/guide/advanced/teleport)
 - General Integration Testing Resources (not specifically for Vue)
   - [Frontend Mentor > Learning Path > Integration Tests](https://www.frontendmentor.io/learning-paths/introduction-to-front-end-testing-kacF_IJQO5/steps/689e5149d98fffca3e5870a4/article/read)
   - [How To Write Integration Tests With Jest And React Testing Library](https://coderpad.io/blog/development/how-to-write-integration-tests-with-jest-and-react-testing-library/)
@@ -103,6 +113,16 @@ As always, so many cool :sunglasses: things. Here are some of the key resources 
 - Dialog
   - [`<dialog>`: The Dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/dialog)
   - [HTMLDialogElement: returnValue property](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/returnValue)
+  - [ARIA: alertdialog role](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Roles/alertdialog_role)
+  - [Dialog](https://web.dev/learn/html/dialog)
+  - [ARIA: aria-modal attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-modal)
+  - [ARIA Authoring Practices Guide (APG) > Alert and Message Dialogs Pattern](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/)
+  - [ARIA Authoring Practices Guide (APG) > Alert Dialog Example](https://www.w3.org/WAI/ARIA/apg/patterns/alertdialog/examples/alertdialog/)
+  - [ARIA: aria-labelledby attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-labelledby)
+  - [ARIA: aria-describedby attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-describedby)
+- Forms and Buttons
+  - [`<button>`: The Button element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button)
+  - [Forms and buttons in HTML](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content/HTML_forms)
 - [CRUD (create, read, update, delete)](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
   - [Vue Examples > CRUD](https://vuejs.org/examples/#crud)
   - Searching the comments data
@@ -130,6 +150,7 @@ As always, so many cool :sunglasses: things. Here are some of the key resources 
   - [Regular expression tester](https://regex101.com/r/1O1CBv/1)
   - [Regular expressions](https://javascript.info/regular-expressions)
 - [Pinia state and local storage with $subscribe](https://pinia.vuejs.org/core-concepts/state.html#Subscribing-to-the-state)
+- [caniuse > types: <length>: dvb, dvh, dvi, dvmax, dvmin, dvw units](https://caniuse.com/mdn-css_types_length_viewport_percentage_units_dynamic)
 
 ### Continued development
 
@@ -138,7 +159,7 @@ Specific areas that the solution should be improved (known issues):
 - [x] Don't immediately give focus to the default add new comment textarea (unlike the conditional reply textareas, which should automatically get focus)
   - Solved this using Vue's [Custom Directives](https://vuejs.org/guide/reusability/custom-directives). Very cool. :sunglasses:
 - [ ] Add in error checking/validation.
-  - For example, should the store enforce that a new comment can be added only if there is a current
+  - For example, should the store enforce that a new comment can be added only if there is a current user signed in
   - And should an update or deletion only be made if the current user matches the author of the comment to be updated or deleted?
 - [ ] Make sure form and input element ids are each unique (especially if reusing components in different places, under different conditions). For example, do the new comment creation form and textarea inputs have unique ids compared to ones that are created for replying to a post?
 - [ ] In comment user component, if only showing the image (`format='image-only'`), include the username as 'sr-only' rather than excluding it entirely.
