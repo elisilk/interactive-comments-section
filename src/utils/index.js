@@ -2,7 +2,7 @@ export const deepCopy = (originalObject) => JSON.parse(JSON.stringify(originalOb
 
 export const trimFirstAtToken = (string) => {
   // check if string begins with an @ username
-  const regex = /^@[\w\d]+/g
+  const regex = /^@[\w\d]+/
   const atTokenMatch = string.match(regex)
 
   // none found, so just return the string as is
