@@ -161,6 +161,8 @@ picture {
 
 body {
   min-inline-size: 20rem; /* 320px */
+  min-block-size: 100vh;
+  min-block-size: 100dvh;
   min-block-size: 100dvb;
 }
 
