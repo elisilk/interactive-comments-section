@@ -20,7 +20,7 @@ watch(
     } else {
       dialogElement.value.close()
       dialogElement.value.removeEventListener('keydown', trapFocus)
-      lastFocusedElement.focus() // Restore focus to last element
+      if (lastFocusedElement) lastFocusedElement.focus()
     }
   },
 )
